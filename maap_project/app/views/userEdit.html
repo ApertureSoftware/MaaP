@@ -1,0 +1,49 @@
+<div ng-include="'views/Navbar.html'"></div>
+<div class="row-fluid">
+    <div class="col-md-10">
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div ng-model="rows" class="panel-heading">User Edit</div>
+
+            <!-- Table -->
+
+
+            <table class="table">
+                <th>Label</th>
+                <th>Value</th>
+                <tr ng-repeat="label in labels track by $index" ng-hide="label == 'ID'">
+                    <td>{{label}}</td>
+                    <td><input ng-model="original_data[$index]"> </td>
+
+                <tr>
+                    <td>Password</td>
+                    <td><input ng-model="newPassword1" placeholder="Insert new password"> </td>
+                    <td><input ng-model="newPassword2" placeholder="Repeat new password"> </td>
+                    <td><span ng-show="newPassword1 == newPassword2 && newPassword1 != null" class="glyphicon glyphicon-ok"> Passwords match!</span></td>
+                    <td><span ng-show="newPassword1 != newPassword2" class="glyphicon glyphicon-remove">Passwords don't match!</span></td>
+
+                </tr>
+
+            </table>
+
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div  ng-show="admin" class="panel panel-default">
+            <!-- Default panel contents -->
+            <div ng-model="rows" class="panel-heading">Options</div>
+
+            <a  ng-click="edit_document()" ng-disabled="newPassword1 != newPassword2" class="btn btn-danger"><i class="glyphicon glyphicon-pencil"></i> Save</a>
+            <a href="/users/{{current_document}}" ng-click="discard()" class="btn btn-warning"><i class="glyphicon glyphicon-trash"></i> Discard</a>
+
+        </div>
+        <div  ng-hide="admin" class="panel panel-default">
+            <!-- Default panel contents -->
+            <div ng-model="rows" class="panel-heading">Options</div>
+
+            <a  ng-click="edit_document()" ng-disabled="newPassword1 != newPassword2" class="btn btn-danger"><i class="glyphicon glyphicon-pencil"></i> Save</a>
+            <a href="/profile" ng-click="discard()" class="btn btn-warning"><i class="glyphicon glyphicon-trash"></i> Discard</a>
+
+        </div>
+    </div>
+</div>

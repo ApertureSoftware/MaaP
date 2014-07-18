@@ -1,0 +1,4 @@
+{ "_id" : { "$oid" : "107c35dd8fada716c89d0013"}, "name" : "Filippo", "surname":"Inzaghi", "email": "filippo@inzaghi.com", "age": 37 }
+{ "_id" : { "$oid" :"107c35dd8fada716c89d0014"}, "name" : "Walter", "surname":"Mazzarri", "email": "walter@mazzarri.com", "age": 45 }
+{ "_id" : { "$oid" :"107c35dd8fada716c89d0015"}, "name" : "Michele", "surname":"Serena", "email": "michele@serena.com", "age": 44 } 
+{ "_id" : { "$oid" :"107c35dd8fada716c89d0016"}, "name" : "Antonio", "surname":"Conte", "email": "antonio@conte.com", "age": 42 }

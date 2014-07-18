@@ -1,0 +1,7 @@
+{ "_id" : { "$oid" : "509c35dd8fada716c89d0013"}, "nome" : "Pasta", "prezzo" : 1.50, "posizione" : { "$oid" :"187c35dd8fada716c89d0017"}, "offerta" : "si" }
+{ "_id" : { "$oid" : "509c35dd8fada716c89d0014"}, "nome" : "Riso", "prezzo" : 2.50, "posizione" : { "$oid" :"187c35dd8fada716c89d0018"}, "offerta" : "si"}
+{ "_id" : { "$oid" : "509c35dd8fada716c89d0015"}, "nome" : "Latte", "prezzo" : 0.50, "posizione" : { "$oid" :"187c35dd8fada716c89d0019"}, "offerta" : "no" }
+{ "_id" : { "$oid" : "509c35dd8fada716c89d0016"}, "nome" : "Gelato", "prezzo" : 1.50, "posizione" : { "$oid" :"187c35dd8fada716c89d0020"}, "offerta" : "no" }
+{ "_id" : { "$oid" : "509c35dd8fada716c89d0017"}, "nome" : "Pizza", "prezzo" : 1.50,  "posizione" : { "$oid" :"187c35dd8fada716c89d0021"}, "offerta" : "si" }
+{ "_id" : { "$oid" : "509c35dd8fada716c89d0018"}, "nome" : "Acqua", "prezzo" : 0.50, "posizione" : { "$oid" :"187c35dd8fada716c89d0022"}, "offerta" : "si" }
+{ "_id" : { "$oid" : "509c35dd8fada716c89d0019"}, "nome" : "Birra", "prezzo" : 1.20, "posizione" : { "$oid" :"187c35dd8fada716c89d0023"}, "offerta" : "no" }

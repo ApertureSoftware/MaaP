@@ -1,0 +1,29 @@
+<div ng-include="'views/Navbar.html'"></div>
+<div class="row-fluid">
+    <div class="col-md-10">
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div ng-model="rows" class="panel-heading">Your profile</div>
+
+            <!-- Table -->
+
+            <table class="table">
+                <th>Label</th>
+                <th>Value</th>
+                <tr ng-repeat="label in labels track by $index">
+                    <td>{{label}}</td>
+                    <td>{{original_data[$index]}}</td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Options</div>
+
+            <a href="/profile/edit"  class="btn btn-danger"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+        </div>
+    </div>
+</div>

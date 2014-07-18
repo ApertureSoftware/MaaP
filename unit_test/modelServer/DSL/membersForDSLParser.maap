@@ -1,0 +1,44 @@
+collection = {
+	label: 'Membri',
+	name: 'members',
+	position: 1,
+	
+	index : {
+		perpage: 2,
+		sortby: 'age',
+		order: 'asc',
+		column : [
+			{
+				name: 'name',
+				type: 'String'
+			},
+			{	
+				label: 'eta',
+				name: 'age',
+				type: 'Number, min: 18, max:35'
+			}
+		],
+		query: {
+			age: {$lt: 40}
+		}
+	}, //end index page
+	
+	show : {
+		row : [
+			{
+				label: 'Nome',
+				name: 'name',
+				type: 'String'
+			},
+			{	
+				name: 'age',
+				type: 'Number, min: 18, max:35',
+				transformation: 'age = age*2'
+			}
+		]
+	} //end show page
+	
+} //end collection	
+
+//exports collection [DO NOT REMOVE]
+exports.collection = collection;

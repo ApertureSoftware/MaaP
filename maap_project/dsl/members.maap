@@ -1,0 +1,77 @@
+collection = {
+	label: 'Membri',
+	name: 'members',
+	position: 2,
+	
+	index : {
+		perpage: 5,
+		sortby: 'age',
+		order: 'asc',
+		column : [
+			{
+				label: 'Nome',
+				name: 'name',
+				type: 'String'
+			},
+			{	
+				label: 'Cognome',
+				name: 'surname',
+				type: 'String'
+			},
+			{	
+				label: 'eta',
+				name: 'age',
+				type: 'Number, min: 18, max:35'
+			},
+			{	
+				label: 'email',
+				name: 'email',
+				type: 'String'
+			}
+		],
+		query: {
+			age: {$lt: 40}
+		}
+	}, //end index page
+	
+	show : {
+		row : [
+			{
+				label: 'Nome',
+				name: 'name',
+				type: 'String'
+			},
+			{	
+				label: 'Cognome',
+				name: 'surname',
+				type: 'String'
+			},
+			{	
+				label: 'email',
+				name: 'email',
+				type: 'String'
+			},
+			{	
+				label: 'eta',
+				name: 'age',
+				type: 'Number, min: 18, max:35'
+			},
+			{	
+				label: 'Interessi',
+				name: 'interest',
+				type: 'Array',
+				transformation: 'var result = \"\" ; \
+								for(var i=0; i<interest.length; i++) \
+								{ \
+									if(i != 0){result += \", \"; } \
+									result += interest[i]; \
+								} \
+								interest = result;'							
+			}
+		]
+	} //end show page
+	
+} //end collection	
+
+//exports collection [DO NOT REMOVE]
+exports.collection = collection;

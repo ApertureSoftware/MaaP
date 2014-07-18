@@ -1,0 +1,83 @@
+collection = {
+	label: 'Squadre',
+	name: 'teams',
+	position: 1, 
+	
+	index : {
+		populate: [{collection: 'coaches', key: 'coach'},{collection: 'coaches', key: 'coach2'},{collection: 'supermarket', key: 'market'}],
+		perpage: 3,
+		sortby: 'name',
+		order: 'asc',
+		column : [
+			{
+				label: 'Nome Squadra',
+				name: 'name',
+				type: 'String'
+			},
+			{	
+				label: 'Numero Giocatori',
+				name: 'number_players',
+				type: 'Number, min: 23, max:35'
+			},
+			{	
+				label: 'Nome Allenatore',
+				name: 'coach.name',
+				type: 'String',
+				transformation: 'name = \"Mr. \" + name;'
+			},
+			{	
+				label: 'Tecnico',
+				name: 'coach2.name',
+				type: 'String'
+			},
+			{	
+				label: 'Alimentazione',
+				name: 'market.nome',
+				type: 'String'
+			}
+		],
+		query: {
+			number_players: {$lt: 40}
+		}
+	}, //end index page
+	
+	show : {
+		populate: [{collection: 'coaches', key: 'coach'}],
+		row : [
+			{
+				label: 'Nome Squadra',
+				name: 'name',
+				type: 'String'
+			},
+			{	
+				label: 'Numero Giocatori',
+				name: 'number_players',
+				type: 'Number, min: 23, max:35'
+			},
+			{	
+				label: 'Nome Allenatore',
+				name: 'coach.name',
+				type: 'String'
+			},
+			{	
+				label: 'Cognome Allenatore',
+				name: 'coach.surname',
+				type: 'String'
+			},
+			{	
+				label: 'Email Allenatore',
+				name: 'coach.email',
+				type: 'String'
+			},
+			{	
+				label: 'Eta Allenatore',
+				name: 'coach.age',
+				type: 'Number, min: 18, max:70'
+			}
+		]
+	} //end show page
+	
+} //end collection	
+
+//exports collection [DO NOT REMOVE]
+exports.collection = collection;

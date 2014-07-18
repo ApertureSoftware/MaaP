@@ -1,0 +1,76 @@
+{
+  "name": "maaperture",
+  "description": "MaaP - MongoDB as an Admin Platform",
+  "version": "1.0.21",
+  "license": "BSD-3-Clause",
+  "contributors": [
+    {
+      "name": "Alberto Garbui"
+    },
+    {
+      "name": "Alessandro Benetti"
+    },
+    {
+      "name": "Andrea Perin"
+    },
+    {
+      "name": "Fabio Miotto"
+    },
+    {
+      "name": "Giacomo Pinato"
+    },
+    {
+      "name": "Mattia Sorgato"
+    },
+    {
+      "name": "Michele Maso"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ApertureSoftware/MaaP.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ApertureSoftware/MaaP/issues",
+    "email": "apertureSWE@gmail.com"
+  },
+  "keywords": [
+    "maap",
+    "maaperture",
+    "aperture"
+  ],
+  "main": "./index.js",
+  "bin": {
+    "maaperture": "./maap_installer/maaperture.js"
+  },
+  "dependencies": {
+    "commander": "2.2.0",
+    "ncp": "0.6.x",
+    "express": "4.1.1",
+    "mongoose": "3.8.x",
+    "express-session": "1.2.x",
+    "passport": "0.2.x",
+    "passport-local": "1.0.x",
+    "path": "latest",
+    "serve-favicon": "latest",
+    "morgan": "latest",
+    "cookie-parser": "latest",
+    "body-parser": "latest",
+    "nodemailer": "0.7.x",
+    "deasync": "0.0.x",
+    "q": "1.0.x"
+  },
+  "devDependencies": {
+    "mocha": "~1.20.x",
+	"istanbul": "0.3.x",
+    "should": "~4.0.x",
+    "chai": "1.9.x",
+    "chai-spies": "0.5.x",
+    "plato": "1.0.x",
+    "complexity-report": "1.0.x",
+    "rewire": "2.0.x"
+  },
+  "engines": {
+    "node": "latest"
+  }
+}

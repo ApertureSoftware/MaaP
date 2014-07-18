@@ -1,0 +1,56 @@
+collection = {
+	label: 'Allenatori',
+	name: 'coaches',
+	position: 4,
+	
+	index : {
+		perpage: 3,
+		sortby: 'name',
+		order: 'asc',
+		column : [
+			{
+				label: 'Nome',
+				name: 'name',
+				type: 'String'
+			},
+			{	
+				label: 'Cognome',
+				name: 'surname',
+				type: 'String'
+			}
+		]
+	}, //end index page
+	
+	show : {
+		row : [
+			{
+				name: '_id',
+				type: 'ObjectId'
+			},
+			{
+				label: 'Nome',
+				name: 'name',
+				type: 'String'
+			},
+			{	
+				label: 'Cognome',
+				name: 'surname',
+				type: 'String'
+			},
+			{	
+				label: 'Email',
+				name: 'email',
+				type: 'String'
+			},
+			{	
+				label: 'Eta',
+				name: 'age',
+				type: 'Number, min: 18, max:70'
+			}
+		]
+	} //end show page
+	
+} //end collection	
+
+//exports collection [DO NOT REMOVE]
+exports.collection = collection;

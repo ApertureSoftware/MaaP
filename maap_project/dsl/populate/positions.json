@@ -1,0 +1,7 @@
+{ "_id" : { "$oid" :"187c35dd8fada716c89d0017"}, "reparto" : "Alimentari", "scaffale" : 3, "colonna" : 5}
+{ "_id" : { "$oid" :"187c35dd8fada716c89d0018"}, "reparto" : "Alimentari", "scaffale" : 2, "colonna" : 5}
+{ "_id" : { "$oid" :"187c35dd8fada716c89d0019"}, "reparto" : "Frigo", "scaffale" : 5, "colonna" : 1}
+{ "_id" : { "$oid" :"187c35dd8fada716c89d0020"}, "reparto" : "Surgelati", "scaffale" : 3, "colonna" : 5}
+{ "_id" : { "$oid" :"187c35dd8fada716c89d0021"}, "reparto" : "Bibite", "scaffale" : 1, "colonna" : 6}
+{ "_id" : { "$oid" :"187c35dd8fada716c89d0022"}, "reparto" : "Bibite", "scaffale" : 1, "colonna" : 6}
+{ "_id" : { "$oid" :"187c35dd8fada716c89d0023"}, "reparto" : "Bibite", "scaffale" : 1, "colonna" : 5 }

@@ -1,0 +1,56 @@
+<div ng-include="'views/Navbar.html'"></div>
+
+<div class="row-fluid">
+    <div class="col-xs-8 col-xs-offset-1">
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div ng-model="rows" class="panel-heading">Queries</div>
+
+            <!-- Table -->
+
+            <table class="table" ng-show="rows.length != 0">
+                <th ng-click="columnSort($index)" ng-repeat="label in labels">{{label}}</th>
+                <th>Options</th>
+                <tr ng-repeat="row in rows track by $index" >
+                    <td ng-repeat="value in row">{{value}}</td>
+                    <td><a ng-show="true" href="" class="btn btn-info btn-sm" ng-click="createIndex(data[$index]._id)" ><i class="glyphicon glyphicon-ok"></i> Create Index</a></td>
+					<td><a ng-show="true" href="" class="btn btn-info btn-sm" ng-click="showIndexInfo(data[$index])" ><i class="glyphicon glyphicon-ok"></i>Index cmd</a></td>
+              	</tr>
+            </table>
+			<div class="page-header">
+				<span ng-show="rows.length == 0"><h2>No queries found!</h2>Queries are automatically created while viewing a collection/document.</span>
+			</div>
+        </div>
+
+        <div ng-show=" pages > 1 " class="pagination-div">
+
+            <ul class="pagination">
+
+                <li ng-class="DisablePrevPage()">
+
+                    <a href ng-click="prevPage()"> Prev</a>
+
+                </li>
+
+                <li ng-repeat="n in range()"
+
+                    ng-class="{'disabled': n == current_page}"
+
+                    ng-click="toPage(n)">
+
+                    <a href="">{{n+1}}</a>
+
+                </li>
+
+                <li ng-class="DisableNextPage()">
+
+                    <a href ng-click="nextPage()">Next </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+
+</div>
