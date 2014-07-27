@@ -51,10 +51,12 @@ angular.module('maaperture').controller('UsersCtrl', function ($scope, $location
             },
 
             function success() {
-                $location.path('/users/');
-
+                alert("User deleted!");
+                $location.path('/users');
             },
             function err() {
+				alert("User delete failed! contact your root administrator.");
+				$location.path('/users');
             }
         );
     };

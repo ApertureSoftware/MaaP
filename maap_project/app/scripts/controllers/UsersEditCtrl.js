@@ -62,7 +62,8 @@ angular.module('maaperture').controller('UsersEditCtrl', function ($scope, $loca
                 $location.path('/users/' + $scope.current_document);
             },
             function err() {
-                $location.path("/404");
+				alert("Something went wrong, contact your administrator.");
+				$location.path('/users/' + $scope.current_document);
             }
         );
     };
@@ -74,9 +75,12 @@ angular.module('maaperture').controller('UsersEditCtrl', function ($scope, $loca
         }).$promise.then(
 
             function success() {
-                $location.path('/users/');
+				alert("User deleted!");
+                $location.path('/users');
             },
-            function err(error) {
+            function err() {
+				alert("User delete failed! contact your root administrator.");
+				$location.path('/users');
             }
         );
     };

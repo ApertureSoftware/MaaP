@@ -15,12 +15,15 @@ exports.app = app = {
 	//configurazione servizio mail per recupero password
 	nodemailerConfig : {
 		service: "Gmail",
-		user: "user@gmail.com",
+		user: "mail@gmail.com",
 		pass: "gmailpassword"
 	},
 	
 	//abilita/disabilita registrazione utente
-	enableUserRegistration: true
+	enableUserRegistration: true,
+	
+	//crypto key for users passwords SHA1
+	cryptoKey: 'm44pertureUsersP4ssw0rdK3y'
 	
 }
 

@@ -21,6 +21,8 @@ var retriever = require('./DataRetrieverUsers');
 var DB = require('../../database/MongooseDBFramework');
 //richiedo il modulo per il JSonComposer
 var JSonComposer = require('../JSonComposer');
+//nodejs crypto per generare l'HASH sha1 della password
+var crypto = require('crypto');
 
 /**
  * Effettua un controllo di presenza nel database utenti della email specificata dal Client.
@@ -88,6 +90,9 @@ exports.userSignup = function(req, res, next) {
 		return;
 	}
 	
+	//crypto la password
+	var passwordCrypt = crypto.createHmac('sha1', req.config.app.cryptoKey).update(req.body.pwd1).digest('hex');
+	
 	//prendo la mail inserita dall'utente
 	var userMail = req.body.email.toLowerCase();
 	
@@ -99,7 +104,7 @@ exports.userSignup = function(req, res, next) {
 		if (count == 0) {
 			//se il numero di occorrenze è 0 allora l'utente non è presente
 			//chiamo addUser del retriever per inserire l'utente
-			retriever.addUser(userMail, req.body.pwd1, level, function(success){
+			retriever.addUser(userMail, passwordCrypt, level, function(success){
 				//controllo se l'inserimento ha avuto successo o no
 				if(success)
 				{
@@ -261,20 +266,35 @@ exports.sendUserEdit = function(req, res) {
  *@param res - Oggetto duale a req su cui invocare i metodi per inviare informazioni al Client richiedente.
  */
 exports.updateUser = function(req, res) {
-	//stampo sulla console un messaggio di aggiornamento dati utente
-	console.log('update user from admin: ' + JSON.stringify(req.body));
-	//chiamo updateUser del retriever per completare l'aggiornamento dei dati del profilo
-	retriever.updateUser(req, function(done){
-		//controllo se l'aggiornamento di dati è andato a buon fine
-		if(done)
+	//controllo chi si bisogna modificare
+	retriever.getUserProfile(req.params.user_id, function(user2modify){
+	
+		//evito la modifica di un rootAdmin da parte di un admin
+		if((req.session.passport.user.level < 2 &&	//se non sono rootAdmin
+		   user2modify.level > 0 ) ||				//e voglio modificare un admin o peggio un rootAdmin, oppure
+		   (req.session.passport.user.level < 2 &&	//se non sono rootAdmin
+			req.body.level == 'root' )				//e voglio generare un rootAdmin
+		)
 		{
-			//se l'aggiornamento di dati è andato a buon fine allora invio al client uno stato HTTP 200 di successo
-			res.send(200);
+			res.send(400);							//segnalo un errore
 		}else{
-			//se l'aggiornamento di dati non è andato a buon fine allora invio al client uno stato HTTP 400 di insuccesso
-			res.send(400);
+			//stampo sulla console un messaggio di aggiornamento dati utente
+			console.log('update user from admin: ' + JSON.stringify(req.body));
+			//chiamo updateUser del retriever per completare l'aggiornamento dei dati del profilo
+			retriever.updateUser(req, function(done){
+				//controllo se l'aggiornamento di dati è andato a buon fine
+				if(done)
+				{
+					//se l'aggiornamento di dati è andato a buon fine allora invio al client uno stato HTTP 200 di successo
+					res.send(200);
+				}else{
+					//se l'aggiornamento di dati non è andato a buon fine allora invio al client uno stato HTTP 400 di insuccesso
+					res.send(400);
+				}
+			});	
 		}
-	});	
+		
+	});
 };
 
 /**
@@ -285,18 +305,31 @@ exports.updateUser = function(req, res) {
  *@param res - Oggetto duale a req su cui invocare i metodi per inviare informazioni al Client richiedente.
  */
 exports.removeUser = function(req, res) {
-	//stampo sulla console un messaggio di rimozione utente
-	console.log('admin is removing an user: ' + req.params.user_id);
-	//chiamo removeUser del retriever per eliminare un utente
-	retriever.removeUser(req.params.user_id, function(done){
-		//controllo se la rimozione è andata a buon fine
-		if(done)
+
+	//controllo chi si bisogna rimuovere
+	retriever.getUserProfile(req.params.user_id, function(user2remove){
+	
+		//evito la rimozione di un rootAdmin da parte di un admin
+		if(req.session.passport.user.level < 2 &&	//se non sono rootAdmin
+		   user2remove.level > 0					//e voglio cancellare un admin o peggio un rootAdmin
+		)
 		{
-			//se la rimozione è andata a buon fine allora invio uno stato HTTP 200 di successo al client
-			res.send(200);
+			res.send(400);							//segnalo un errore
 		}else{
-			//se la rimozione non è andata a buon fine allora invio uno stato HTTP 400 di insuccesso al client
-			res.send(400);
+			//stampo sulla console un messaggio di rimozione utente
+			console.log('admin is removing an user: ' + req.params.user_id);
+			//chiamo removeUser del retriever per eliminare un utente
+			retriever.removeUser(req.params.user_id, function(done){
+				//controllo se la rimozione è andata a buon fine
+				if(done)
+				{
+					//se la rimozione è andata a buon fine allora invio uno stato HTTP 200 di successo al client
+					res.send(200);
+				}else{
+					//se la rimozione non è andata a buon fine allora invio uno stato HTTP 400 di insuccesso al client
+					res.send(400);
+				}
+			});	
 		}
-	});	
+	});
 };

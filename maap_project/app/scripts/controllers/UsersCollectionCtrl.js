@@ -85,7 +85,12 @@ angular.module('maaperture').controller('UsersCollectionCtrl', function ($scope,
                 $scope.credentials).$promise.then(
                 function success() {
                     alert("User created correctly");
-                    $scope.getData();
+					 $scope.credentials = {
+						email: '',
+						pwd1: '',
+						pwd2: ''
+					};
+                    $scope.getData();					
                 },
                 function err() {
                     alert("Registration failed! Try again later ;)");
@@ -127,9 +132,11 @@ angular.module('maaperture').controller('UsersCollectionCtrl', function ($scope,
         }).$promise.then(
 
             function success() {
-                $location.path('/users/');
+                $location.path('/users');
             },
             function err(error) {
+				alert("User delete failed! contact your root administrator.");
+				$location.path('/users');
             }
         );
     };
