@@ -35,12 +35,12 @@ Maaperture on heroku
 Try out a Maaperture example app on heroku:
 Heromaap -> http://heromaap.herokuapp.com
 	
-Maaperture collection example dsl [lavoratori.maap]
+Maaperture collection example dsl [workers.maap]
 -------------
 
 ```  javascript
 collection = {
-	label: 'Lavoratori giovani fulltime', 	//collection label
+	label: 'Fulltime workers', 	//collection label
 	name: 'workers',						//mongoDB collection's name
 	position: 3, 							//menu position
 	
@@ -51,28 +51,28 @@ collection = {
 		order: 'asc',
 		column : [
 			{	
-				label: 'Nome',
+				label: 'Name',
 				name: 'name',
 				type: 'String'
 			},
 			{	
-				label: 'Mansione',
+				label: 'Field',
 				name: 'job.type',
 				type: 'String',
-				transformation: 'type = type + \" a tempo pieno\";'
+				transformation: 'type = type + \" fulltime\";'
 			},
 			{	
-				label: 'Registrato il',
-				name: 'data_registrazione',
+				label: 'Registration date',
+				name: 'registration_date',
 				type: 'Date, default: Date.now'
 			},
 			{	
-				label: 'Turno lavorativo',
+				label: 'Turn',
 				name: 'jobtype',
 				type: 'String'
 			},
 			{	
-				label: 'Eta',
+				label: 'Age,
 				name: 'age',
 				type: 'Number, min: 0, max:199'
 			}
@@ -87,23 +87,23 @@ collection = {
 		populate: [{collection: 'jobs', key: 'job'}, {collection: 'sports', key: 'sport'}],
 		row : [
 			{
-				label: 'Identificativo',
+				label: 'ID',
 				name: '_id',
 				type: 'ObjectId'
 			},
 			{	
-				label: 'Nome',
+				label: 'Name',
 				name: 'name',
 				type: 'String'
 			},
 			{	
-				label: 'Mansione',
+				label: 'Field',
 				name: 'job.type',
 				type: 'String'
 			},
 			{	
-				label: 'Registrato il',
-				name: 'data_registrazione',
+				label: 'Registration Date',
+				name: 'registration_date',
 				type: 'Date, default: Date.now'
 			},
 			{	
@@ -116,7 +116,7 @@ collection = {
 				type: 'String'
 			},
 			{
-				label: 'Interessi personali',
+				label: 'Hobbies',
 				name: 'interest',
 				type: '[String]',
 				transformation: 'var result = \"\" ; \
