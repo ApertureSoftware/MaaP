@@ -27,13 +27,13 @@ angular.module('maaperture').controller('PwdRecoveryCtrl', function ($scope, $ro
         RecoveryService.recover(
             {}, $scope.credentials).$promise.then(
             function success() {
-                alert("password has been sent!");
+                alert("If an account matched that address, an email will be sent with instructions.");
                 $location.path('/');
                 $route.reload();
 
             },
             function error() {
-                alert("we didn't found this email, please check it and try again!");
+                alert("If an account matched that address, an email will be sent with instructions.");
                 $location.path('/recover');
                 $route.reload();
             });

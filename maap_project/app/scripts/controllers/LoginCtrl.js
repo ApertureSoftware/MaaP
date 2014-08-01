@@ -35,7 +35,7 @@ angular.module('maaperture').controller('LoginCtrl', function ($scope, $route, $
         AuthService.login({}, $scope.credentials).$promise.then(
             function success(data) {
                 $cookieStore.put("loggedIn", true);
-                if (data.level === 1) {
+                if (data.level > 0) {
                     $cookieStore.put("isAdmin", true);
                 }
                 else {

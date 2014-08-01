@@ -16,6 +16,8 @@
 
 var DB = require('../../database/MongooseDBFramework');
 
+//nodejs crypto per generare l'HASH sha1 della password
+var crypto = require('crypto');
 
  /**
  * La funzione inserisce un nuovo utente nel database utenti del sistema. Alla fine dell'inserimento,
@@ -28,6 +30,7 @@ var DB = require('../../database/MongooseDBFramework');
  */
 //
 exports.addUser = function(email, password, level, callback) {
+	
 	var criteria = new DB.users({email:email, password: password, level: level});
 	var query = criteria.save(function(err){
 		 // se l'inserimento fallisce stampo un messaggio di errore
@@ -87,7 +90,10 @@ exports.getUserProfile = getUserProfile;
 
 
 exports.updateUserProfile = function(req, callback) {
+
 	var model = DB.users;
+	
+	var cryptoKey = req.config.app.cryptoKey;
 	
 	var criteria = {};
 	criteria._id = req.session.passport.user._id;
@@ -97,8 +103,9 @@ exports.updateUserProfile = function(req, callback) {
 	var newUserData = {};
 	newUserData.email = req.body.email.toLowerCase();
 	
+	//crypto la nuova password
 	if(req.body.newpassword != undefined)
-		newUserData.password = req.body.newpassword;
+		newUserData.password = crypto.createHmac('sha1', cryptoKey).update(req.body.newpassword).digest('hex');
 	
 	//recupero dei vecchi dati utenti
 	//var oldEmail = req.session.passport.user.email;
@@ -229,7 +236,13 @@ exports.updateUser = function(req, callback) {
 		if(user.level == 'administrator')
 	{
 		user.level = 1;
-	}else{
+	}else 
+		//se l'utente è amministratore root
+		if(user.level == 'root')
+	{
+		user.level = 2;
+	}
+	else{
 		// Passo false alla callback
 		callback(false);
 		return;
@@ -240,7 +253,8 @@ exports.updateUser = function(req, callback) {
 	var newUserData = {};
 	newUserData.email = user.email.toLowerCase();
 	if(user.newpassword != undefined)
-		newUserData.password = user.newpassword;
+		newUserData.password = crypto.createHmac('sha1', cryptoKey).update(user.newpassword).digest('hex');
+
 	newUserData.level = user.level;
 	// definisco la query per modificare l'utente secondo le opzioni
 	var query = model.update(criteria, {$set: newUserData}, options);

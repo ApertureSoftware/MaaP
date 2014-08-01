@@ -20,7 +20,10 @@ exports.app = app = {
 	},
 	
 	//abilita/disabilita registrazione utente
-	enableUserRegistration: true
+	enableUserRegistration: true,
+	
+	//crypto key for users passwords SHA1
+	cryptoKey: 'm44pertureUsersP4ssw0rdK3y'
 	
 }
 
