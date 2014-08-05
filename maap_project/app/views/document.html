@@ -1,5 +1,9 @@
 <div ng-include="'views/Navbar.html'"></div>
-
+<script type="text/javascript">
+    $('.dropdown-menu input, .dropdown-menu label').click(function(e) {
+        e.stopPropagation();
+    });
+</script>
 <div class="row-fluid">
     <div class="col-md-10">
         <div class="panel panel-default">
@@ -8,7 +12,7 @@
 
             <!-- Table -->
 
-            <table class="table">
+            <table class="table" ng-hide="showRawData">
                 <th>Label</th>
                 <th>Value</th>
                 <tr ng-repeat="row in labels track by $index">
@@ -17,6 +21,9 @@
                  </tr>
             </table>
 
+            <textarea ng-disabled="true" ng-show="showRawData" ng-model="originalJson" rows="10" cols="50">
+            </textarea>
+
         </div>
     </div>
     <div  ng-show="canEdit" class="col-md-2">
@@ -24,8 +31,24 @@
             <!-- Default panel contents -->
             <div class="panel-heading">Options</div>
 
-            <a href="/collection/{{current_collection}}/{{current_document}}/edit"  class="btn btn-danger"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
-            <a href="" ng-click="delete_document()" class="btn btn-warning"><i class="glyphicon glyphicon-trash"></i> Delete</a>
+            <a href="/collection/{{current_collection}}/{{current_document}}/edit"  class="btn btn-block btn-sm btn-success"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+            <a href="" ng-click="delete_document()" class="btn btn-block btn-sm btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</a>
+        </div>
+        <div class="panel panel-default">
+
+            <div class="dropdown">
+                <span class="dropdown-toggle btn btn-sm" data-toggle="dropdown">
+                    Advanced <span class="caret"></span>
+                </span>
+                <ul class="dropdown-menu dropdown-menu-form" role="menu">
+                    <li>
+                            <input type="checkbox" ng-model="showRawData">
+                            Show raw JSON
+                    </li>
+
+                </ul>
+            </div>
+
         </div>
     </div>
 </div>

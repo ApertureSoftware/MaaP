@@ -32,8 +32,8 @@
             <!-- Default panel contents -->
             <div ng-model="rows" class="panel-heading">Options</div>
 
-            <a  ng-click="edit_document()" ng-disabled="newPassword1 != newPassword2" class="btn btn-danger"><i class="glyphicon glyphicon-pencil"></i> Save</a>
-            <a href="/users/{{current_document}}" ng-click="discard()" class="btn btn-warning"><i class="glyphicon glyphicon-trash"></i> Discard</a>
+            <a  ng-click="edit_document()" ng-disabled="newPassword1 != newPassword2" class="btn btn-block btn-sm btn-danger"><i class="glyphicon glyphicon-pencil"></i> Save</a>
+            <a href="/users/{{current_document}}" ng-click="discard()" class="btn btn-block btn-sm btn-warning"><i class="glyphicon glyphicon-trash"></i> Discard</a>
 
         </div>
         <div  ng-hide="admin" class="panel panel-default">

@@ -16,7 +16,7 @@
 'use strict';
 
 angular.module('maaperture').controller('DashboardCtrl', function ($scope, CollectionListService) {
-    $scope.searchbox = null;
+    $scope.searchbox = '';
     // Servizio per ricevere la lista di collection dal server.
     $scope.Search = function () {
         CollectionListService.get({find: $scope.searchbox}).$promise.then(function success(data) {
