@@ -15,6 +15,7 @@ angular.module('maaperture').controller('DocumentCtrl', function ($scope, $locat
         doc_id: $routeParams.doc_id }).$promise.then(
 
         function success(response) {
+            $scope.originalJson =  JSON.stringify(response.data,undefined, 2); // indentation level = 2
             $scope.data = response.data;
             $.each($scope.data, function (key, value) {
                 //salva i valori in un array per non perdere l'ordinamento

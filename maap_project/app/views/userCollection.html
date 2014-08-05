@@ -12,8 +12,8 @@
                 <th colspan="3">Options</th>
                 <tr ng-repeat="row in rows track by $index" >
                     <td ng-repeat="value in row">{{value}}</td>
-                    <td><a href="/users/{{data[$index]._id}}" class="btn btn-info btn-sm"><i class="glyphicon glyphicon-ok"></i> View</a></td>
-                    <td><a href="/users/{{data[$index]._id}}/edit" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-pencil"></i> Edit</a></td>
+                    <td><a href="/users/{{data[$index]._id}}" class="btn btn-block  btn-info btn-sm"><i class="glyphicon glyphicon-ok"></i> View</a></td>
+                    <td><a href="/users/{{data[$index]._id}}/edit" class="btn btn-danger btn-block btn-sm"><i class="glyphicon glyphicon-pencil"></i> Edit</a></td>
                     <td><a href="#" ng-click="delete_document(data[$index]._id)" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-trash"></i> Delete</a></td>
 
                 </tr>

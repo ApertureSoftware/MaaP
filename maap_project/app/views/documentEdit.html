@@ -19,9 +19,9 @@
             <!-- Default panel contents -->
             <div class="panel-heading">Options</div>
 
-            <a  ng-click="edit_document()" ng-show="canEdit" class="btn btn-danger"><i class="glyphicon glyphicon-pencil"></i> Save</a>
-            <a href="/collection/{{current_collection}}/{{current_document}}" ng-click="discard()" ng-show="canEdit" class="btn btn-warning"><i class="glyphicon glyphicon-trash"></i> Discard</a>
-            <a href="" ng-click="delete_document()"  ng-show="canEdit" class="btn btn-warning"><i class="glyphicon glyphicon-trash"></i> Delete</a>
+            <a  ng-click="edit_document()" ng-show="canEdit" class="btn btn-block btn-sm btn-success"><i class="glyphicon glyphicon-floppy-saved"></i> Save</a>
+            <a href="/collection/{{current_collection}}/{{current_document}}" ng-click="discard()" ng-show="canEdit" class="btn btn-block btn-sm btn-warning"><i class="glyphicon glyphicon-floppy-remove"></i> Discard</a>
+            <a href="" ng-click="delete_document()"  ng-show="canEdit" class="btn btn-block btn-sm btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</a>
 
         </div>
     </div>

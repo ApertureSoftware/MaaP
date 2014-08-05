@@ -13,8 +13,8 @@
                 <th>Options</th>
                 <tr ng-repeat="row in rows track by $index" >
                     <td ng-repeat="value in row">{{value}}</td>
-                    <td><a ng-show="true" href="" class="btn btn-info btn-sm" ng-click="createIndex(data[$index]._id)" ><i class="glyphicon glyphicon-ok"></i> Create Index</a></td>
-					<td><a ng-show="true" href="" class="btn btn-info btn-sm" ng-click="showIndexInfo(data[$index])" ><i class="glyphicon glyphicon-ok"></i>Index cmd</a></td>
+                    <td><a ng-show="true" href="" class="btn btn-info btn-block btn-sm" ng-click="createIndex(data[$index]._id)" ><i class="glyphicon glyphicon-ok"></i> Create Index</a></td>
+					<td><a ng-show="true" href="" class="btn btn-info btn-block btn-sm" ng-click="showIndexInfo(data[$index])" ><i class="glyphicon glyphicon-ok"></i>Index cmd</a></td>
               	</tr>
             </table>
 			<div class="page-header">
