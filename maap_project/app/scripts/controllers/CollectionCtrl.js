@@ -1,21 +1,3 @@
-/**
- * File: CollectionCtrl;
- * Module: app:controllers;
- * Author: Giacomo Pinato;
- * Created: 10/05/14;
- * Version: 0.4;
- * Description: Controller for the collection view
- * Modification History:
- ==============================================
- * Version | Changes
- ==============================================
- * 0.4 Fixed Angular auto sorting results
- * 0.3 Added sorting logic
- * 0.2 Added services support
- * 0.1 File creation
- ==============================================
- */
-
 'use strict';
 
 angular.module('maaperture').controller('CollectionCtrl', function ($scope, $route, $location, DocumentEditService, CollectionDataService, $routeParams, $cookieStore) {
