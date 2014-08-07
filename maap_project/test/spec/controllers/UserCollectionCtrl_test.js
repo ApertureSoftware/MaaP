@@ -96,6 +96,7 @@ describe('Controller: UsersCollectionCtrl', function () {
         // Given
         $httpBackend.whenGET('http://localhost:9000/api/users/list?page=0&query=%7B%22method%22:%22GET%22%7D').respond(200, data);
         $httpBackend.whenGET('views/dashboard.html').respond(200);
+        $httpBackend.whenGET('views/userCollection.html').respond(200);
 
         $httpBackend.whenGET('http://localhost:9000/api/users/list').respond(200, data);
         $httpBackend.whenDELETE('http://localhost:9000/api/users/edit').respond(400);

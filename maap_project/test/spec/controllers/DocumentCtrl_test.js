@@ -59,7 +59,7 @@ describe('Controller: DocumentCtrl', function () {
 
 
         $httpBackend.flush();
-        expect(location.path()).toBe('/404');
+        expect(location.path()).toBe('/0');
 
     });
 
