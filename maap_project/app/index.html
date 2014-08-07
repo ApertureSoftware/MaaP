@@ -12,14 +12,10 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+    <link id="cssfile" rel="stylesheet" type="text/css" href="styles/cerulean.css">
 
 
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:css({.tmp,app}) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/flaty.css">
     <style>
         body{padding-top: 70px;} /*ORRORE RIMUOVERE ASAP*/
     </style>
@@ -28,11 +24,6 @@
     <!-- endbuild -->
 </head>
 <body ng-app="maaperture">
-
-
-<!-- Add your site or application content here -->
-<div class="container-fluid"  ng-view></div>
-
 
 <!--[if lt IE 9]>
 <script src="bower_components/es5-shim/es5-shim.js"></script>
@@ -60,6 +51,7 @@
 <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
 <script src="bower_components/jquery-ui/ui/jquery-ui.js"></script>
+<script src="bower_components/jquery-cookie/jquery.cookie.js"></script>
 <script src="bower_components/angular-ui-sortable/sortable.js"></script>
 <script src="bower_components/angular-local-storage/angular-local-storage.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
@@ -114,5 +106,9 @@
 <!-- Latest compiled and minified JavaScript -->
 <!-- <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script> -->
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+
+<!-- Add your site or application content here -->
+<div class="container-fluid"  ng-view></div>
 </body>
 </html>

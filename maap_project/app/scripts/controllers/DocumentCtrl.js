@@ -6,6 +6,8 @@ angular.module('maaperture').controller('DocumentCtrl', function ($scope, $locat
     $scope.current_document = $routeParams.doc_id;
     $scope.values = [];
     $scope.canEdit = $cookieStore.get("isAdmin");
+    $scope.isAdmin = $cookieStore.get("isAdmin");
+
 
     //Funzione per richiedere un documento al server.
     //Passa come parametri la collection e il documento da ricevere

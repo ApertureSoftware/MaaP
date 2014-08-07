@@ -1,3 +1,16 @@
+<script>
+    if($.cookie("css")) {
+        $("#cssfile").attr("href",$.cookie("css"));
+    }
+    $(document).ready(function() {
+        $("#nav li a").click(function() {
+            $("#cssfile").attr("href",$(this).attr('rel'));
+            $.cookie("css",$(this).attr('rel'), {expires: 365, path: '/'});
+            return false;
+        });
+    });
+</script>
+
 <div class="navbar navbar-default navbar-fixed-top" ng-controller="NavBarCtrl">
     <nav role="navigation">
         <div class="container-fluid">
@@ -20,8 +33,6 @@
                         <a  href="" class="dropdown-toggle" data-toggle="dropdown">Collections <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li ng-repeat="element in labels"><a href="/collection/{{values[$index]}}">{{element}}</a></li>
-
-
                             <li ng-show="isAdmin" class="divider"></li>
                             <li ng-show="isAdmin"><a href="/users">Users</a></li>
                             <li ng-show="isAdmin"><a href="/queries">Queries</a></li>
@@ -40,6 +51,16 @@
                 <ul  class="nav navbar-nav navbar-right">
                     <li ng-show="isAdmin"><a href="/users">Manage Users</a></li>
                     <li ><a href="/profile">Profile</a></li>
+                    <li class="dropdown">
+                        <a  href="" class="dropdown-toggle" data-toggle="dropdown">Styles <b class="caret"></b></a>
+                        <ul id="nav" class="dropdown-menu">
+                            <li><a href="" rel="styles/hero.css">Hero</a></li>
+                            <li><a href="" rel="styles/cerulean.css">Cerulean</a></li>
+                            <li><a href="" rel="styles/flaty.css">Flaty</a></li>
+                        </ul>
+                    </li>
+
+
                     <li ng-click="logout()"><a href="">Logout</a></li>
                     <li><a href="/help">Help!</a></li>
                 </ul>

@@ -1,18 +1,3 @@
-/**
- * File: ProfileCtrl;
- * Module: mapp:controllers;
- * Author: Giacomo Pinato;
- * Created: 12/05/14;
- * Version: 0.1;
- * Description: Controller for the profile view;
- * Modification History:
- ==============================================
- * Version | Changes
- ==============================================
- * 0.1 File creation
- ==============================================
- */
-
 'use strict';
 
 angular.module('maaperture').controller('ProfileCtrl', function ($scope, $location, ProfileDataService, ProfileEditService) {

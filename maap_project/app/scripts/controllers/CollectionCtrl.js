@@ -8,7 +8,7 @@ angular.module('maaperture').controller('CollectionCtrl', function ($scope, $rou
         $scope.column_original_name = [];
         $scope.current_sort = null;
         $scope.current_page = 0;
-        $scope.canEdit = $cookieStore.get("isAdmin");
+        $scope.isAdmin = $cookieStore.get("isAdmin");
         $scope.current_collection = $routeParams.col_id;
         $scope.rows = [];
         $scope.getData();
