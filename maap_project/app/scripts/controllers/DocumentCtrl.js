@@ -5,13 +5,18 @@ angular.module('maaperture').controller('DocumentCtrl', function ($scope, $locat
     $scope.current_collection = $routeParams.col_id;
     $scope.current_document = $routeParams.doc_id;
     $scope.values = [];
+    $scope.data={};
     $scope.canEdit = $cookieStore.get("isAdmin");
-    $scope.tempData =  { name: 'Giacomo',
-        surname: 'Pinato',
-        email: 'giacomo.pinato@gmail.com',
+    $scope.tempData =  { name: "Giacomo",
+        surname: "Pinato",
+        email: "giacomo.pinato@gmail.com",
         age: 23,
-        interest: 'Musica',
-        bitches: { bitches1: 'Julia', bitches2: 'Eva', bitches3: 'Scarlett' } };
+        interest: {primario:"Musica",secondario:"Gnocca"},
+        bitches: { bitches1: "Julia", bitches2: "Eva", bitches3: "Scarlett" } };
+
+    $scope.isObject = function (temp) {
+        return typeof temp === 'object';
+    }
 
     //Funzione per richiedere un documento al server.
     //Passa come parametri la collection e il documento da ricevere
@@ -23,14 +28,26 @@ angular.module('maaperture').controller('DocumentCtrl', function ($scope, $locat
         function success(response) {
             $scope.originalJson =  JSON.stringify(response.data,undefined, 2); // indentation level = 2
             $scope.data = $scope.tempData;
-            $.each($scope.data, function (key, value) {
-                //salva i valori in un array per non perdere l'ordinamento
-                    if ( typeof value === 'object'){alert("found an object");}
-                    $scope.values.push(value);
 
+            $.each($scope.data, function (key, value) {
+
+                if ($scope.isObject(value)){
+                    $scope.innerObject = [];
+                    $.each(value, function (key, value) {
+                        $scope.innerObject.push(value);
+                    });
+                    $scope.values.push($scope.innerObject);
+                }
+                //salva i valori in un array per non perdere l'ordinamento
+
+                else {
+                    $scope.values.push(value);
+                }
             });
             //Salva le etichette in un array
-            $scope.labels = response.label;
+            //$scope.labels = response.label;
+            $scope.labels = ["nome","cognome","email","eta","interessi","bitches"];
+
         },
 
         function error() {
@@ -53,6 +70,7 @@ angular.module('maaperture').controller('DocumentCtrl', function ($scope, $locat
             }
         );
     };
+
 
 });
 

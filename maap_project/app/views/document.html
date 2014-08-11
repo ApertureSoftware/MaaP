@@ -17,8 +17,16 @@
                 <th>Value</th>
                 <tr ng-repeat="row in labels track by $index">
                     <td>{{row}}</td>
-                    <td>{{values[$index]}}</td>
-                 </tr>
+                    <td ng-hide="isObject(values[$index])">{{values[$index]}}</td>
+                    <td ng-show="isObject(values[$index])">
+                        <table>
+                            <tr ng-repeat="row in values[$index]">
+                                <td>{{row}}</td>
+                            </tr>
+                        </table>
+                    </td>
+
+                </tr>
             </table>
 
             <textarea ng-disabled="true" ng-show="showRawData" ng-model="originalJson" rows="10" cols="50">
