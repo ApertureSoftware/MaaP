@@ -63,7 +63,7 @@ describe('Controller: UsersCtrl', function () {
         // When
         scope.delete_document();
         $httpBackend.flush();
-        expect(location.path()).toBe('/users/');
+        expect(location.path()).toBe('/users');
 
 
     });

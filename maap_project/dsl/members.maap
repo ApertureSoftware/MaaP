@@ -67,6 +67,11 @@ collection = {
 									result += interest[i]; \
 								} \
 								interest = result;'							
+			},
+			{
+				label: 'Lovers (sure)',
+				name: 'bitches',
+				type: 'Object'
 			}
 		]
 	} //end show page
