@@ -4,6 +4,22 @@
         e.stopPropagation();
     });
 </script>
+
+<script type="text/ng-template"  id="json_nest_render.html">
+
+    <table class="table">
+        <tr ng-options="">
+            <td>{{row}}</td>
+            <td ng-hide="isObject(values[$index])">{{values[$index]}}</td>
+            <td ng-show="isObject(values[$index])" ng-include="'json_nest_render.html'"  >
+
+            </td>
+
+        </tr>
+    </table>
+</script>
+
+
 <div class="row-fluid">
     <div class="col-md-10">
         <div class="panel panel-default">
@@ -15,13 +31,17 @@
             <table class="table" ng-hide="showRawData">
                 <th>Label</th>
                 <th>Value</th>
-                <tr ng-repeat="row in labels track by $index">
-                    <td>{{row}}</td>
+                <tr ng-repeat="object in values track by $index">
+                    <td ng-hide="isObject(values[$index])">{{labels[$index]}}</td>
                     <td ng-hide="isObject(values[$index])">{{values[$index]}}</td>
+                    <td ng-show="isObject(values[$index])">{{labels[$index][0]}}</td>
+
                     <td ng-show="isObject(values[$index])">
                         <table>
-                            <tr ng-repeat="row in values[$index]">
-                                <td>{{row}}</td>
+                            <tr ng-repeat="(key,value) in (values[$index])">
+                                <td>{{labels[$parent.$index][key+1]}}</td>
+                                <td>{{value}}</td>
+
                             </tr>
                         </table>
                     </td>
