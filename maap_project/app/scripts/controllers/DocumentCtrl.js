@@ -14,24 +14,23 @@ angular.module('maaperture').controller('DocumentCtrl', function ($scope, $locat
     }
 
     $scope.parseResponse = function (data, index) {
-        var values=[];
+        var data_array=[];
         if (index > 0) {
             $.each(data, function (key, value) {
 
                 if ($scope.isObject(value)) {
                      var innerObject = $scope.parseResponse(value,index-1);
-                     values.push(innerObject);
+                     data_array.push(innerObject);
                 }
-
                 else {
-                     values.push(value);
+                     data_array.push(value);
                 }
             });
 
-            return values;
+            return data_array;
         }
         else{
-            return values;
+            return JSON.stringify(data);
         }
     };
     //Funzione per richiedere un documento al server.
@@ -43,9 +42,8 @@ angular.module('maaperture').controller('DocumentCtrl', function ($scope, $locat
 
         function success(response) {
             $scope.originalJson =  JSON.stringify(response.data,undefined, 2); // indentation level = 2
-            $scope.values = $scope.parseResponse(response.data,1); //1 is the nesting limit
+            $scope.values = $scope.parseResponse(response.data,1); //1 is the nesting limit, 2 not yet supported by server
             $scope.labels = response.label;
-
         },
 
         function error() {
