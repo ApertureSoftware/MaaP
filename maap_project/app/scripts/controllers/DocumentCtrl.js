@@ -6,7 +6,7 @@ angular.module('maaperture').controller('DocumentCtrl', function ($scope, $locat
     $scope.current_document = $routeParams.doc_id;
     $scope.values = [];
     $scope.data={};
-    $scope.canEdit = $cookieStore.get("isAdmin");
+    $scope.isAdmin = $cookieStore.get("isAdmin");
 
 
     $scope.isObject = function (temp) {
