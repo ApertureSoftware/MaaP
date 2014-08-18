@@ -7,12 +7,7 @@ angular.module('maaperture').controller('DocumentCtrl', function ($scope, $locat
     $scope.values = [];
     $scope.data={};
     $scope.canEdit = $cookieStore.get("isAdmin");
-    $scope.tempData =  { name: "Giacomo",
-        surname: "Pinato",
-        email: "giacomo.pinato@gmail.com",
-        age: 23,
-        interest: {primario:"Musica",secondario:"Gnocca"},
-        bitches: { bitches1: "Julia", bitches2: "Eva", bitches3: "Scarlett" } };
+
 
     $scope.isObject = function (temp) {
         return typeof temp === 'object';
@@ -20,14 +15,13 @@ angular.module('maaperture').controller('DocumentCtrl', function ($scope, $locat
 
     $scope.parseResponse = function (data, index) {
         var values=[];
-        if (index > 1) {
+        if (index > 0) {
             $.each(data, function (key, value) {
 
                 if ($scope.isObject(value)) {
                      var innerObject = $scope.parseResponse(value,index-1);
                      values.push(innerObject);
                 }
-                //salva i valori in un array per non perdere l'ordinamento
 
                 else {
                      values.push(value);
@@ -49,13 +43,8 @@ angular.module('maaperture').controller('DocumentCtrl', function ($scope, $locat
 
         function success(response) {
             $scope.originalJson =  JSON.stringify(response.data,undefined, 2); // indentation level = 2
-            $scope.data = $scope.tempData;
-
-            $scope.values = $scope.parseResponse($scope.data,3);
-            //Salva le etichette in un array
-            //$scope.labels = response.label;
-            $scope.labels = ["nome","cognome","email","eta",["interessi","uno: ","due: "],["bitches","Mora: ","Bionda: ","Rossa: "]];
-
+            $scope.values = $scope.parseResponse(response.data,1); //1 is the nesting limit
+            $scope.labels = response.label;
 
         },
 

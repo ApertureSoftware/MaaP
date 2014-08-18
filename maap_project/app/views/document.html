@@ -5,20 +5,6 @@
     });
 </script>
 
-<script type="text/ng-template"  id="json_nest_render.html">
-
-    <table class="table">
-        <tr ng-options="">
-            <td>{{row}}</td>
-            <td ng-hide="isObject(values[$index])">{{values[$index]}}</td>
-            <td ng-show="isObject(values[$index])" ng-include="'json_nest_render.html'"  >
-
-            </td>
-
-        </tr>
-    </table>
-</script>
-
 
 <div class="row-fluid">
     <div class="col-md-10">
@@ -37,7 +23,7 @@
                     <td ng-show="isObject(values[$index])">{{labels[$index][0]}}</td>
 
                     <td ng-show="isObject(values[$index])">
-                        <table>
+                        <table class="table">
                             <tr ng-repeat="(key,value) in (values[$index])">
                                 <td>{{labels[$parent.$index][key+1]}}</td>
                                 <td>{{value}}</td>
