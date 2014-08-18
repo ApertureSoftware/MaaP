@@ -1,0 +1,90 @@
+<div ng-include="'views/Navbar.html'"></div>
+<script type="text/javascript">
+    $('.dropdown-menu input, .dropdown-menu label').click(function(e) {
+        e.stopPropagation();
+    });
+</script>
+
+<<<<<<< HEAD
+=======
+<script type="text/ng-template"  id="json_nest_render.html">
+
+    <td ng-hide="isObject(values[$index])">{{labels[$index]}}</td>
+    <td ng-hide="isObject(values[$index])">{{values[$index]}}</td>
+
+    <td ng-show="isObject(values[$index])">{{labels[$index][0]}}</td>
+    <td ng-show="isObject(values[$index])">
+        <table>
+            <tr ng-repeat="(key,value) in (values[$index])">
+                <td>{{labels[$parent.$index][key+1]}}</td>
+                <td>{{value}}</td>
+
+            </tr>
+        </table>
+    </td>
+</script>
+
+>>>>>>> feature/Nested_document
+
+<div class="row-fluid">
+    <div class="col-md-10">
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div ng-model="rows" class="panel-heading">Document show</div>
+
+            <!-- Table -->
+
+            <table class="table" ng-hide="showRawData">
+                <th>Label</th>
+                <th>Value</th>
+                <tr ng-repeat="object in values track by $index" ng-include="json_nested_render.html">
+
+
+                    <!--<td ng-hide="isObject(values[$index])">{{labels[$index]}}</td>
+                    <td ng-hide="isObject(values[$index])">{{values[$index]}}</td>
+
+                    <td ng-show="isObject(values[$index])">{{labels[$index][0]}}</td>
+                    <td ng-show="isObject(values[$index])">
+                        <table class="table">
+                            <tr ng-repeat="(key,value) in (values[$index])">
+                                <td>{{labels[$parent.$index][key+1]}}</td>
+                                <td>{{value}}</td>
+
+                            </tr>
+                        </table>
+                    </td>-->
+
+                </tr>
+            </table>
+
+            <textarea ng-disabled="true" ng-show="showRawData" ng-model="originalJson" rows="10" cols="50">
+            </textarea>
+
+        </div>
+    </div>
+    <div  ng-show="canEdit" class="col-md-2">
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Options</div>
+
+            <a href="/collection/{{current_collection}}/{{current_document}}/edit"  class="btn btn-block btn-sm btn-success"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+            <a href="" ng-click="delete_document()" class="btn btn-block btn-sm btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</a>
+        </div>
+        <div class="panel panel-default">
+
+            <div class="dropdown">
+                <span class="dropdown-toggle btn btn-sm" data-toggle="dropdown">
+                    Advanced <span class="caret"></span>
+                </span>
+                <ul class="dropdown-menu dropdown-menu-form" role="menu">
+                    <li>
+                            <input type="checkbox" ng-model="showRawData">
+                            Show raw JSON
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
