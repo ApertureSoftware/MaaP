@@ -1,0 +1,4 @@
+Version 1.0.40
+
+-Added vertical layout for arrays
+-Added nested json object, only 1 level of recursion supported
