@@ -1,21 +1,5 @@
-/**
- * File: DocumentEditCtrl;
- * Module: mapp:controllers;
- * Author: Giacomo Pinato;
- * Created: 12/05/14;
- * Version: 0.3;
- * Description: Controller for the Document edit view;
- * Modification History:
- ==============================================
- * Version | Changes
- ==============================================
- * 0.3 Redesign of returned data
- * 0.2 Added services support
- * 0.1 File creation
- ==============================================
- */
-
 'use strict';
+
 angular.module('maaperture').controller('DocumentEditCtrl', function ($scope, $location, DocumentEditService, $routeParams) {
     $scope.current_collection = $routeParams.col_id;
     $scope.current_document = $routeParams.doc_id;
@@ -40,24 +24,29 @@ angular.module('maaperture').controller('DocumentEditCtrl', function ($scope, $l
 
     //Funzione per inviare al server il nuovo documento modificato
     $scope.edit_document = function () {
+        var validJson = true;
+        try{
+            var json_data = JSON.parse($scope.original_data);
+        }catch(error){
+            alert(error);
+            validJson = false;
+        }
+        if(validJson === true) {
+            DocumentEditService.update({
+                    col_id: $scope.current_collection,
+                    doc_id: $scope.current_document
+                },
+                json_data).$promise.then(
+                function success() {
+                    //In caso di successo ritorno al documento corrente
+                    $location.path('/collection/' + $scope.current_collection + '/' + $scope.current_document);
+                },
+                function err() {
+                    $location.path("/404");
 
-        //trasforma l'oggetto new_data in JSON.
-        var json_data = $scope.original_data;
-        //Trasmette al server il nuovo json
-        DocumentEditService.update({
-                col_id: $scope.current_collection,
-                doc_id: $scope.current_document
-            },
-            json_data).$promise.then(
-            function success() {
-                //In caso di successo ritorno al documento corrente
-                $location.path('/collection/' + $scope.current_collection + '/' + $scope.current_document);
-            },
-            function err() {
-                $location.path("/404");
-
-            }
-        );
+                }
+            );
+        }
     };
 
     //Funzione per richiedere la cancellazione del documento visualizzato
