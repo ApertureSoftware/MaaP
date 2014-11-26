@@ -22,11 +22,24 @@
                         <th>Label</th>
                         <th>Value</th>
                         <tr ng-repeat="object in values track by $index">
+                            <!--Common value-->
                             <td ng-hide="isObject(values[$index])">{{labels[$index]}}</td>
                             <td ng-hide="isObject(values[$index])">{{values[$index]}}</td>
-                            <td ng-show="isObject(values[$index])">{{labels[$index][0]}}</td>
 
-                            <td ng-show="isObject(values[$index])">
+                            <!--Aray-->
+                            <td ng-show="isObject(values[$index]) && !isObject(labels[$index])">{{labels[$index]}}</td>
+                            <td ng-show="isObject(values[$index]) && !isObject(labels[$index])">
+                                <table class="table">
+                                    <tr ng-repeat="(key,value) in (values[$index])">
+                                        <td>{{key}}</td>
+                                        <td>{{value}}</td>
+
+                                    </tr>
+                                </table>
+                            </td>
+                            <!--Object-->
+                            <td ng-show="isObject(values[$index]) && isObject(labels[$index])">{{labels[$index][0]}}</td>
+                            <td ng-show="isObject(values[$index]) && isObject(labels[$index])">
                                 <table class="table">
                                     <tr ng-repeat="(key,value) in (values[$index])">
                                         <td>{{labels[$parent.$index][key+1]}}</td>
@@ -87,11 +100,24 @@
                     <th>Label</th>
                     <th>Value</th>
                     <tr ng-repeat="object in values track by $index">
+                        <!--Common value-->
                         <td ng-hide="isObject(values[$index])">{{labels[$index]}}</td>
                         <td ng-hide="isObject(values[$index])">{{values[$index]}}</td>
-                        <td ng-show="isObject(values[$index])">{{labels[$index][0]}}</td>
 
-                        <td ng-show="isObject(values[$index])">
+                        <!--Aray-->
+                        <td ng-show="isObject(values[$index]) && !isObject(labels[$index])">{{labels[$index]}}</td>
+                        <td ng-show="isObject(values[$index]) && !isObject(labels[$index])">
+                            <table class="table">
+                                <tr ng-repeat="(key,value) in (values[$index])">
+                                    <td>{{key}}</td>
+                                    <td>{{value}}</td>
+
+                                </tr>
+                            </table>
+                        </td>
+                        <!--Object-->
+                        <td ng-show="isObject(values[$index]) && isObject(labels[$index])">{{labels[$index][0]}}</td>
+                        <td ng-show="isObject(values[$index]) && isObject(labels[$index])">
                             <table class="table">
                                 <tr ng-repeat="(key,value) in (values[$index])">
                                     <td>{{labels[$parent.$index][key+1]}}</td>

@@ -8,18 +8,20 @@ angular.module('maaperture').controller('DocumentCtrl', function ($scope, $locat
     $scope.data={};
     $scope.isAdmin = $cookieStore.get("isAdmin");
 
-
     $scope.isObject = function (temp) {
         return typeof temp === 'object';
     }
 
-    $scope.parseResponse = function (data, index) {
-        var data_array=[];
-        if (index > 0) {
-            $.each(data, function (key, value) {
 
+    $scope.parseResponse = function (data, recursion_limit) {
+        var data_array=[];
+        if (recursion_limit > 0) {
+
+            $.each(data, function (key, value) {
+                // my data is a
                 if ($scope.isObject(value)) {
-                     var innerObject = $scope.parseResponse(value,index-1);
+
+                     var innerObject = $scope.parseResponse(value,recursion_limit-1);
                      data_array.push(innerObject);
                 }
                 else {
@@ -42,7 +44,7 @@ angular.module('maaperture').controller('DocumentCtrl', function ($scope, $locat
 
         function success(response) {
             $scope.originalJson =  JSON.stringify(response.data,undefined, 2); // indentation level = 2
-            $scope.values = $scope.parseResponse(response.data,1); //1 is the nesting limit, 2 not yet supported by server
+            $scope.values = $scope.parseResponse(response.data,2); //2 is the nesting limit, 3 not yet supported by server
             $scope.labels = response.label;
         },
 
