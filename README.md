@@ -72,7 +72,7 @@ collection = {
 				type: 'String'
 			},
 			{	
-				label: 'Age,
+				label: 'Age',
 				name: 'age',
 				type: 'Number, min: 0, max:199'
 			}
